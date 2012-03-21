@@ -443,6 +443,9 @@ bool MCCacheReader::readObjFile() {
                      mpResult->mCachedELFExecutable.size(),
                      &resolveSymbolAdapter, this);
 
+  rsloaderUpdateSectionHeaders(mpResult->mRSExecutable,
+    (unsigned char*) mpResult->mCachedELFExecutable.begin());
+
   return true;
 }
 
