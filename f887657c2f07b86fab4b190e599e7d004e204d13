@@ -1,0 +1,8 @@
+Code-Review+2: Jason Sams <jsams@google.com>
+Verified+1: Jason Sams <jsams@google.com>
+Verified+1: Deckard Autoverifier <deckard@android.com>
+Submitted-by: Jason Sams <jsams@google.com>
+Submitted-at: Tue, 05 Mar 2013 00:09:48 +0000
+Reviewed-on: https://android-review.googlesource.com/49153
+Project: platform/frameworks/compile/libbcc
+Branch: refs/heads/master
