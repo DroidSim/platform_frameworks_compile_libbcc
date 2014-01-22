@@ -21,6 +21,16 @@ LOCAL_CFLAGS := \
   -D__HOST__ \
   $(LOCAL_CFLAGS)
 
+ifneq ($(strip $(BUILD_HOST_64bit)),)
+  $(info TODO(x86_64): frameworks/compile/libbcc: Remove warnings. -Werror is disabled)
+# Disable all warnings
+  LOCAL_CFLAGS += -w
+  LOCAL_CFLAGS := $(patsubst -Werror,-Wno-error,$(LOCAL_CFLAGS))
+
+  LOCAL_CFLAGS += -fpermissive
+  LOCAL_CFLAGS += -Wno-int-to-pointer-cast
+endif
+
 ifeq ($(TARGET_BUILD_VARIANT),eng)
 libbcc_CFLAGS += -DANDROID_ENGINEERING_BUILD
 else
