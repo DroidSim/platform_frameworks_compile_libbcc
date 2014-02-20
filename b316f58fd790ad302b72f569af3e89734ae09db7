@@ -1,0 +1,7 @@
+Code-Review+2: Stephen Hines <srhines@google.com>
+Verified+1: Stephen Hines <srhines@google.com>
+Submitted-by: Stephen Hines <srhines@google.com>
+Submitted-at: Thu, 20 Feb 2014 00:23:54 +0000
+Reviewed-on: https://android-review.googlesource.com/82852
+Project: platform/frameworks/compile/libbcc
+Branch: refs/heads/master
