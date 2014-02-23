@@ -49,6 +49,13 @@ endif
 
 include frameworks/compile/libbcc/libbcc-targets.mk
 
+ifeq ($(TARGET_OS),gnu_linux)
+LOCAL_C_INCLUDES := \
+  $(LIBBCC_ROOT_PATH)/include \
+  $(LLVM_ROOT_PATH)/include \
+  $(LLVM_ROOT_PATH)/device/include \
+  $(LOCAL_C_INCLUDES)
+else
 LOCAL_C_INCLUDES := \
   bionic \
   external/libcxx/include \
@@ -56,3 +63,6 @@ LOCAL_C_INCLUDES := \
   $(LLVM_ROOT_PATH)/include \
   $(LLVM_ROOT_PATH)/device/include \
   $(LOCAL_C_INCLUDES)
+endif
+
+endif # !(arm64 || mips64)

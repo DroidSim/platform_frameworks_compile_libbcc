@@ -42,6 +42,9 @@ LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 
 # Bionic already includes SHA-1 routines.
 LOCAL_SRC_FILES := $(libbcc_support_SRC_FILES)
+ifeq ($(TARGET_OS),gnu_linux)
+LOCAL_SRC_FILES += sha1.c
+endif
 
 include $(LIBBCC_DEVICE_BUILD_MK)
 include $(LLVM_DEVICE_BUILD_MK)

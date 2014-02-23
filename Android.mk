@@ -67,7 +67,12 @@ LOCAL_WHOLE_STATIC_LIBRARIES := $(libbcc_WHOLE_STATIC_LIBRARIES)
 
 LOCAL_WHOLE_STATIC_LIBRARIES += librsloader
 
+ifeq ($(TARGET_OS),gnu_linux)
+LOCAL_SHARED_LIBRARIES := libbcinfo libLLVM libutils libcutils liblog libc++
+LOCAL_LDLIBS := -lpthread -ldl
+else
 LOCAL_SHARED_LIBRARIES := libbcinfo libLLVM libdl libutils libcutils liblog libc++
+endif
 
 # Modules that need get installed if and only if the target libbcc.so is
 # installed.
