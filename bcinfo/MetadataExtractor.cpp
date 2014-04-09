@@ -425,7 +425,7 @@ bool MetadataExtractor::extract() {
         ALOGE("%s", ec.message().c_str());
         return false;
     }
-    mModule = errval;
+    mModule = errval.get();
   }
 
   const llvm::NamedMDNode *ExportVarMetadata =

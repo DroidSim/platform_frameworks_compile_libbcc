@@ -68,7 +68,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES := $(libbcc_WHOLE_STATIC_LIBRARIES)
 
 LOCAL_WHOLE_STATIC_LIBRARIES += librsloader
 
-LOCAL_SHARED_LIBRARIES := libbcinfo libLLVM libdl libutils libcutils liblog libstlport
+LOCAL_SHARED_LIBRARIES := libbcinfo libLLVM libdl libutils libcutils liblog libcxx
 
 # Modules that need get installed if and only if the target libbcc.so is
 # installed.

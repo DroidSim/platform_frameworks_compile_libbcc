@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+LOCAL_CLANG := true
+
 LOCAL_CFLAGS := \
   -Wall \
   -Wno-unused-parameter \
@@ -66,7 +68,7 @@ endif
 
 LOCAL_C_INCLUDES := \
   bionic \
-  external/stlport/stlport \
+  external/libcxx/include \
   $(LIBBCC_ROOT_PATH)/include \
   $(LLVM_ROOT_PATH)/include \
   $(LLVM_ROOT_PATH)/device/include \
