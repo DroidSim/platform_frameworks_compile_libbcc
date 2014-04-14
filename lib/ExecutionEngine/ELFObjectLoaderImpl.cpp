@@ -33,14 +33,14 @@ bool ELFObjectLoaderImpl::load(const void *pMem, size_t pMemSize) {
   ArchiveReaderLE reader(reinterpret_cast<const unsigned char *>(pMem),
                          pMemSize);
 
-  mObject = ELFObject<32>::read(reader);
+  mObject = ELFObject<64>::read(reader);
   if (mObject == NULL) {
     ALOGE("Unable to load the ELF object!");
     return false;
   }
 
   // Retrive the pointer to the symbol table.
-  mSymTab = static_cast<ELFSectionSymTab<32> *>(
+  mSymTab = static_cast<ELFSectionSymTab<64> *>(
                 mObject->getSectionByName(".symtab"));
   if (mSymTab == NULL) {
     ALOGW("Object doesn't contain any symbol table.");
@@ -87,8 +87,8 @@ bool ELFObjectLoaderImpl::prepareDebugImage(void *pDebugImg,
 
   for (unsigned i = 0; i < elf_header->e_shnum; i++) {
     if (section_header_table[i].sh_flags & llvm::ELF::SHF_ALLOC) {
-      ELFSectionBits<32> *section =
-          static_cast<ELFSectionBits<32> *>(mObject->getSectionByIndex(i));
+      ELFSectionBits<64> *section =
+          static_cast<ELFSectionBits<64> *>(mObject->getSectionByIndex(i));
       if (section != NULL) {
         uintptr_t address = reinterpret_cast<uintptr_t>(section->getBuffer());
         LOG_FATAL_IF(address > 0xFFFFFFFFu, "Out of bound address for Elf32_Addr");
@@ -105,7 +105,7 @@ void *ELFObjectLoaderImpl::getSymbolAddress(const char *pName) const {
     return NULL;
   }
 
-  const ELFSymbol<32> *symbol = mSymTab->getByName(pName);
+  const ELFSymbol<64> *symbol = mSymTab->getByName(pName);
   if (symbol == NULL) {
     ALOGV("Request symbol '%s' is not found in the object!", pName);
     return NULL;
@@ -120,7 +120,7 @@ size_t ELFObjectLoaderImpl::getSymbolSize(const char *pName) const {
     return 0;
   }
 
-  const ELFSymbol<32> *symbol = mSymTab->getByName(pName);
+  const ELFSymbol<64> *symbol = mSymTab->getByName(pName);
 
   if (symbol == NULL) {
     ALOGV("Request symbol '%s' is not found in the object!", pName);
@@ -154,7 +154,7 @@ ELFObjectLoaderImpl::getSymbolNameList(android::Vector<const char *>& pNameList,
   }
 
   for (size_t i = 0, e = mSymTab->size(); i != e; i++) {
-    ELFSymbol<32> *symbol = (*mSymTab)[i];
+    ELFSymbol<64> *symbol = (*mSymTab)[i];
     if (symbol == NULL) {
       continue;
     }

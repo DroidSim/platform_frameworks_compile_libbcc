@@ -151,7 +151,7 @@ RSCompilerDriver::loadScript(const char *pCacheDir, const char *pResName,
 }
 
 #if defined(DEFAULT_ARM_CODEGEN)
-extern llvm::cl::opt<bool> EnableGlobalMerge;
+//extern llvm::cl::opt<bool> EnableGlobalMerge;
 #endif
 
 bool RSCompilerDriver::setupConfig(const RSScript &pScript) {
@@ -161,7 +161,7 @@ bool RSCompilerDriver::setupConfig(const RSScript &pScript) {
       static_cast<llvm::CodeGenOpt::Level>(pScript.getOptimizationLevel());
 
 #if defined(DEFAULT_ARM_CODEGEN)
-  EnableGlobalMerge = mEnableGlobalMerge;
+  //  EnableGlobalMerge = mEnableGlobalMerge;
 #endif
 
   if (mConfig != NULL) {

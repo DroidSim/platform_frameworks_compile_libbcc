@@ -34,16 +34,16 @@
 
 using namespace bcc;
 
-const char RSInfo::LibBCCPath[] = "/system/lib/libbcc.so";
-const char RSInfo::LibCompilerRTPath[] = "/system/lib/libcompiler_rt.so";
-const char RSInfo::LibRSPath[] = "/system/lib/libRS.so";
-const char RSInfo::LibCLCorePath[] = "/system/lib/libclcore.bc";
-const char RSInfo::LibCLCoreDebugPath[] = "/system/lib/libclcore_debug.bc";
+const char RSInfo::LibBCCPath[] = "/system/lib64/libbcc.so";
+const char RSInfo::LibCompilerRTPath[] = "/system/lib64/libcompiler_rt.so";
+const char RSInfo::LibRSPath[] = "/system/lib64/libRS.so";
+const char RSInfo::LibCLCorePath[] = "/system/lib64/libclcore.bc";
+const char RSInfo::LibCLCoreDebugPath[] = "/system/lib64/libclcore_debug.bc";
 #if defined(__i386__)
-const char RSInfo::LibCLCoreX86Path[] = "/system/lib/libclcore_x86.bc";
+const char RSInfo::LibCLCoreX86Path[] = "/system/lib64/libclcore_x86.bc";
 #endif
 #if defined(ARCH_ARM_HAVE_NEON)
-const char RSInfo::LibCLCoreNEONPath[] = "/system/lib/libclcore_neon.bc";
+const char RSInfo::LibCLCoreNEONPath[] = "/system/lib64/libclcore_neon.bc";
 #endif
 
 const uint8_t *RSInfo::LibBCCSHA1 = NULL;
@@ -62,10 +62,10 @@ bool RSInfo::LoadBuiltInSHA1Information() {
     return true;
   }
 
-  void *h = ::dlopen("/system/lib/libbcc.sha1.so", RTLD_LAZY | RTLD_NOW);
+  void *h = ::dlopen("/system/lib64/libbcc.sha1.so", RTLD_LAZY | RTLD_NOW);
   if (h == NULL) {
     ALOGE("Failed to load SHA-1 information from shared library '"
-          "/system/lib/libbcc.sha1.so'! (%s)", ::dlerror());
+          "/system/lib64/libbcc.sha1.so'! (%s)", ::dlerror());
     return false;
   }
 
