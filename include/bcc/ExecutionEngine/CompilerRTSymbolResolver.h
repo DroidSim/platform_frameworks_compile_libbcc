@@ -24,7 +24,11 @@ namespace bcc {
 class CompilerRTSymbolResolver : public DyldSymbolResolver {
 public:
  CompilerRTSymbolResolver() :
+#ifdef __LP64__
+      DyldSymbolResolver("/system/lib64/libcompiler_rt.so") { }
+#else
       DyldSymbolResolver("/system/lib/libcompiler_rt.so") { }
+#endif
 
  virtual void *getAddress(const char *pName) {
    // Compiler runtime functions are always prefixed by "__"

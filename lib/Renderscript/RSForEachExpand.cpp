@@ -144,7 +144,12 @@ private:
   llvm::Type *getForeachStubTy() {
     llvm::Type *VoidPtrTy = llvm::Type::getInt8PtrTy(*C);
     llvm::Type *Int32Ty = llvm::Type::getInt32Ty(*C);
+#ifdef __LP64__
+    llvm::Type *Int64Ty = llvm::Type::getInt64Ty(*C);
+    llvm::Type *SizeTy = Int64Ty;
+#else
     llvm::Type *SizeTy = Int32Ty;
+#endif
     /* Defined in frameworks/base/libs/rs/rs_hal.h:
      *
      * struct RsForEachStubParamStruct {
