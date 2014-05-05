@@ -36,18 +36,18 @@
 
 #elif defined(FORCE_X86_CODEGEN)
   #define PROVIDE_X86_CODEGEN
+  #define DEFAULT_X86_CODEGEN
 
-  #if defined(__i386__)
-    #define DEFAULT_X86_CODEGEN
-  #elif defined(__x86_64__)
-    #define DEFAULT_X86_64_CODEGEN
-  #endif
+#elif defined(FORCE_X86_64_CODEGEN)
+  #define PROVIDE_X86_CODEGEN
+  #define DEFAULT_X86_64_CODEGEN
 
 #else
   #define PROVIDE_ARM_CODEGEN
   #define PROVIDE_ARM64_CODEGEN
   #define PROVIDE_MIPS_CODEGEN
   #define PROVIDE_X86_CODEGEN
+  #define PROVIDE_X86_64_CODEGEN
 
   #if defined(__arm__)
     #define DEFAULT_ARM_CODEGEN
