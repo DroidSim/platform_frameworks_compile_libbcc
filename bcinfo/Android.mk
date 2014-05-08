@@ -85,7 +85,7 @@ LOCAL_MODULE := libbcinfo
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS := optional
 LOCAL_IS_HOST_MODULE := true
-
+LOCAL_CLANG := true
 LOCAL_SRC_FILES := $(libbcinfo_SRC_FILES)
 
 LOCAL_CFLAGS += $(local_cflags_for_libbcinfo)
