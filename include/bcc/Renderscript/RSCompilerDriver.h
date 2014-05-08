@@ -58,6 +58,10 @@ private:
   // and work with.
   bool mEnableGlobalMerge;
 
+  // Version number of our info section. This number should always be
+  // incremented when we have a change that breaks the info formatting.
+  static const uint32_t kRSInfoVersion;
+
   // Setup the compiler config for the given script. Return true if mConfig has
   // been changed and false if it remains unchanged.
   bool setupConfig(const RSScript &pScript);
@@ -125,6 +129,10 @@ public:
 
   RSExecutable *loadScript(const char *pCacheDir, const char *pResName,
                            const char *pBitcode, size_t pBitcodeSize);
+
+  uint32_t getRSInfoVersion() const {
+    return kRSInfoVersion;
+  }
 };
 
 } // end namespace bcc

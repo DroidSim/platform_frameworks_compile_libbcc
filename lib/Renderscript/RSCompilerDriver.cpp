@@ -44,6 +44,10 @@
 
 using namespace bcc;
 
+// Version number of our info section. This number should always be
+// incremented when we have a change that breaks the info formatting.
+const uint32_t RSCompilerDriver::kRSInfoVersion = 1;
+
 RSCompilerDriver::RSCompilerDriver(bool pUseCompilerRT) :
     mConfig(NULL), mCompiler(), mCompilerRuntime(NULL), mDebugContext(false),
     mLinkRuntimeCallback(NULL), mEnableGlobalMerge(true) {
