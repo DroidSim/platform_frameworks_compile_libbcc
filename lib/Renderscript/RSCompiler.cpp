@@ -26,8 +26,10 @@
 #include "bcc/Renderscript/RSTransforms.h"
 #include "bcc/Source.h"
 #include "bcc/Support/Log.h"
+#include "bcinfo/MetadataExtractor.h"
 
 using namespace bcc;
+using namespace bcinfo;
 
 bool RSCompiler::addInternalizeSymbolsPass(Script &pScript, llvm::PassManager &pPM) {
   // Add a pass to internalize the symbols that don't need to have global
@@ -92,6 +94,12 @@ bool RSCompiler::addExpandForEachPass(Script &pScript, llvm::PassManager &pPM) {
   RSScript &script = static_cast<RSScript &>(pScript);
   const RSInfo *info = script.getInfo();
   llvm::Module &module = script.getSource().getModule();
+  MetadataExtractor me(&module);
+  if (!me.extract()) {
+    ALOGE("Could not extract RS metadata for module %s!",
+          module.getModuleIdentifier().c_str());
+    return false;
+  }
 
   if (info == NULL) {
     ALOGE("Missing RSInfo in RSScript to run the pass for foreach expansion on "
@@ -104,7 +112,7 @@ bool RSCompiler::addExpandForEachPass(Script &pScript, llvm::PassManager &pPM) {
   pPM.add(createRSForEachExpandPass(info->getExportForeachFuncs(),
                                     pEnableStepOpt));
   if (script.getEmbedInfo())
-    pPM.add(createRSEmbedInfoPass(info));
+    pPM.add(createRSEmbedInfoPass());
 
   return true;
 }
