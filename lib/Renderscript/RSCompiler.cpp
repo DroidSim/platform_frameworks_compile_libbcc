@@ -101,8 +101,7 @@ bool RSCompiler::addExpandForEachPass(Script &pScript, llvm::PassManager &pPM) {
 
   // Expand ForEach on CPU path to reduce launch overhead.
   bool pEnableStepOpt = true;
-  pPM.add(createRSForEachExpandPass(info->getExportForeachFuncs(),
-                                    pEnableStepOpt));
+  pPM.add(createRSForEachExpandPass(pEnableStepOpt));
   if (script.getEmbedInfo())
     pPM.add(createRSEmbedInfoPass());
 
