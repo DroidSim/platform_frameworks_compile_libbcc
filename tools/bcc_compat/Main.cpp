@@ -41,7 +41,6 @@
 #include <bcc/Support/Initialization.h>
 #include <bcc/Support/InputFile.h>
 #include <bcc/Support/OutputFile.h>
-#include <bcc/Support/TargetCompilerConfigs.h>
 
 using namespace bcc;
 
@@ -166,7 +165,7 @@ bool ConfigCompiler(RSCompilerDriver &pCompilerDriver) {
   CompilerConfig *config = NULL;
 
 #ifdef TARGET_BUILD
-  config = new (std::nothrow) DefaultCompilerConfig();
+  config = new (std::nothrow) CompilerConfig(DEFAULT_TARGET_TRIPLE_STRING);
 #else
   config = new (std::nothrow) CompilerConfig(OptTargetTriple);
 #endif
